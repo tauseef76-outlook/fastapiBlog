@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ status_code|default(500) }} - FastAPI Blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <style>
+        .error-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 3rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-code {
+            color: #667eea;
+            font-size: 6rem;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .error-container h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .home-button {
+            display: inline-block;
+            padding: 0.85rem 1.75rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .error-container {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .error-code {
+                font-size: 4.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>FastAPI Blog</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/">All Posts</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="error-container" role="alert">
+            <div class="error-code">{{ status_code|default(500) }}</div>
+            <h2>{{ title|default("Something went wrong") }}</h2>
+            <p class="error-message">
+                {{ message|default("We could not complete your request. Please try again.") }}
+            </p>
+            <a href="/" class="home-button">Back to Home</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 FastAPI Blog. All rights reserved. | <a href="/" class="footer-link">Home</a></p>
+    </footer>
+</body>
+</html>
